@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyService", "LoyaltySe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService.csproj", "{59F360D2-EBFE-4A7E-A646-A4FC8B5CF892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIPS_lab2.Tests", "DIPS_lab2.Tests\DIPS_lab2.Tests.csproj", "{5126AFAB-5514-4689-8872-307F7D04F624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIPS_lab3.Tests", "DIPS_lab3.Tests\DIPS_lab3.Tests.csproj", "{5126AFAB-5514-4689-8872-307F7D04F624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
