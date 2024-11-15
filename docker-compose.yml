@@ -14,8 +14,6 @@ services:
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
-    networks:
-      - dips_lab3
 
   loyalty_service:
     build:
@@ -23,12 +21,8 @@ services:
       dockerfile: Dockerfile
     container_name: LoyaltyService
     restart: on-failure
-    depends_on:
-      - postgres
     ports:
       - "8050:8050"
-    networks:
-      - dips_lab3
 
   payment_service:
     build:
@@ -36,12 +30,8 @@ services:
       dockerfile: Dockerfile
     container_name: PaymentService
     restart: on-failure
-    depends_on:
-      - postgres
     ports:
       - "8060:8060"
-    networks:
-      - dips_lab3
 
   reservation_service:
     build:
@@ -49,12 +39,8 @@ services:
       dockerfile: Dockerfile
     container_name: ReservationService
     restart: on-failure
-    depends_on:
-      - postgres
     ports:
       - "8070:8070"
-    networks:
-      - dips_lab3
 
   gateway_service:
     build:
@@ -62,12 +48,6 @@ services:
       dockerfile: Dockerfile
     container_name: GatewayService
     restart: on-failure
-    depends_on:
-      - postgres
-      - reservation_service
-      - payment_service
-      - loyalty_service
-      - redis
     ports:
       - "8080:8080"
     networks:
@@ -78,9 +58,3 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
-    networks:
-      - dips_lab3
-
-networks:
-  dips_lab3:
-    driver: bridge
