@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   postgres:
     image: library/postgres:13
@@ -12,7 +14,9 @@ services:
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
-  
+    networks:
+      - dips_lab3
+
   loyalty_service:
     build:
       context: ./LoyaltyService
@@ -23,6 +27,8 @@ services:
       - postgres
     ports:
       - "8050:8050"
+    networks:
+      - dips_lab3
 
   payment_service:
     build:
@@ -34,6 +40,8 @@ services:
       - postgres
     ports:
       - "8060:8060"
+    networks:
+      - dips_lab3
 
   reservation_service:
     build:
@@ -45,6 +53,8 @@ services:
       - postgres
     ports:
       - "8070:8070"
+    networks:
+      - dips_lab3
 
   gateway_service:
     build:
@@ -60,9 +70,17 @@ services:
       - redis
     ports:
       - "8080:8080"
+    networks:
+      - dips_lab3
 
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - "6379:6379"
+    networks:
+      - dips_lab3
+
+networks:
+  dips_lab3:
+    driver: bridge
