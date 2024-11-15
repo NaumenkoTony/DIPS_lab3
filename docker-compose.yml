@@ -57,6 +57,7 @@ services:
       - reservation_service
       - payment_service
       - loyalty_service
+      - redis
     ports:
       - "8080:8080"
 
