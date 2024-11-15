@@ -54,10 +54,6 @@ services:
     restart: on-failure
     depends_on:
       - postgres
-      - reservation_service
-      - payment_service
-      - loyalty_service
-      - redis
     ports:
       - "8080:8080"
 
