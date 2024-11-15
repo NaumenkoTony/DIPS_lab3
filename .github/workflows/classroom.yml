@@ -62,7 +62,7 @@ jobs:
         run: ./scripts/test-script.sh
         env:
           VARIANT: v2
-          SERVICE_NAME: Loyalty Service
+          SERVICE_NAME: loyalty_service
           PORT_NUMBER: 8050
 
       - uses: education/autograding@v1
