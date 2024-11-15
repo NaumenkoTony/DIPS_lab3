@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: library/postgres:13
@@ -14,13 +12,15 @@ services:
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
-
+  
   loyalty_service:
     build:
       context: ./LoyaltyService
       dockerfile: Dockerfile
     container_name: LoyaltyService
     restart: on-failure
+    depends_on:
+      - postgres
     ports:
       - "8050:8050"
 
@@ -30,6 +30,8 @@ services:
       dockerfile: Dockerfile
     container_name: PaymentService
     restart: on-failure
+    depends_on:
+      - postgres
     ports:
       - "8060:8060"
 
@@ -39,6 +41,8 @@ services:
       dockerfile: Dockerfile
     container_name: ReservationService
     restart: on-failure
+    depends_on:
+      - postgres
     ports:
       - "8070:8070"
 
@@ -48,10 +52,14 @@ services:
       dockerfile: Dockerfile
     container_name: GatewayService
     restart: on-failure
+    depends_on:
+      - postgres
+      - reservation_service
+      - payment_service
+      - loyalty_service
+      - redis
     ports:
       - "8080:8080"
-    networks:
-      - dips_lab3
 
   redis:
     image: redis:latest
